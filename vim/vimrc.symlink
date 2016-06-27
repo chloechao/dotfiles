@@ -1,4 +1,86 @@
+execute pathogen#infect()
 syntax on
+filetype plugin indent on
+set nu
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" Fast quiting
+nmap <leader>q :q!<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Nerd Tree
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeWinPos = "right"
+let NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeWinSize=50
+let NERDTreeShowHidden=1
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>nf :NERDTreeFind<cr>
+
+""""""""""""""""""""""""""""""
+" => CTRL-P
+" """"""""""""""""""""""""""""""
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_map = '<c-f>'
+map <leader>j :CtrlP<cr>
+
+""""""""""""""""""""""""""""""
+" => bufExplorer plugin
+" """"""""""""""""""""""""""""""
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=1
+map <leader>o :BufExplorer<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+""""""""""""""""""""""""""""""
+" => Status line
+" """"""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+
+" enable vim-airline on start up
+let g:airline#extensions#tabline#enabled = 1
+
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
+function! HasPaste()
+if &paste
+return 'PASTE MODE '
+en
+return ''
+endfunction
